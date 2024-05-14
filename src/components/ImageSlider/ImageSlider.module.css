@@ -28,6 +28,10 @@
   overflow-y: scroll;
 }
 
+.image-slider__aside-img {
+  max-width: calc(var(--image-max-width) / 4);
+}
+
 .image-slider__aside-img--selected {
   border: var(--card-border) solid;
 }
@@ -38,6 +42,10 @@
 .image-slider__main {
   position: relative;
   margin-left: 100px;
+}
+
+.image-slider__main-img {
+  max-width: var(--image-max-width);
 }
 
 .image-slider__main-btns {

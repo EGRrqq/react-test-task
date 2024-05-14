@@ -46,10 +46,12 @@ const ImageSlider = ({ images }) => {
         {images.map((image, index) => (
           <figure key={index}>
             <img
-              className={styles["image-slider__aside-img--not-selected"]}
+              className={
+                (styles["image-slider__aside-img--not-selected"],
+                styles["image-slider__aside-img"])
+              }
               src={image}
               alt=""
-              style={{ width: "50px", height: "50px" }}
               onMouseOver={(e) => handleMouseOver(e.target, image)}
             />
           </figure>
@@ -61,7 +63,7 @@ const ImageSlider = ({ images }) => {
           <img
             src={selectedImage}
             alt=""
-            style={{ width: "200px", height: "200px" }}
+            className={styles["image-slider__main-img"]}
           />
         </figure>
 

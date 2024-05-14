@@ -2,20 +2,6 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../../services/api";
 import GoodCard from "../../components/GoodCard";
 
-function flattenProducts(products) {
-  let result = [];
-  products.forEach((product) => {
-    product.colors.forEach((color) => {
-      result.push({
-        ...product,
-        ...color,
-        name: `${product.name} ${color.name}`,
-      });
-    });
-  });
-  return result;
-}
-
 function GoodList() {
   const [products, setProducts] = useState(undefined);
 

@@ -16,6 +16,13 @@
   overflow-y: scroll;
 }
 
-.image-slider__selected {
+.image-slider__main {
+  position: relative;
   margin-left: 100px;
+}
+
+.image-slider__main-btns {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

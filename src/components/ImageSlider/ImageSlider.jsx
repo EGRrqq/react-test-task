@@ -31,7 +31,7 @@ const ImageSlider = ({ images }) => {
         ))}
       </aside>
 
-      <div className={styles["image-slider__selected"]}>
+      <div className={styles["image-slider__main"]}>
         <figure>
           <img
             src={selectedImage}
@@ -40,7 +40,7 @@ const ImageSlider = ({ images }) => {
           />
         </figure>
 
-        <section>
+        <section className={styles["image-slider__main-btns"]}>
           <button onClick={handlePrevClick}>Prev</button>
           <button onClick={handleNextClick}>Next</button>
         </section>

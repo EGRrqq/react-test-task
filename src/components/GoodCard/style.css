@@ -1,0 +1,8 @@
+.good-card {
+  display: grid;
+  place-items: center;
+}
+
+.good-card__image {
+  max-width: var(--image-max-width);
+}

@@ -2,6 +2,8 @@
   --main-font-size: calc(0.75rem + max(1vw, 1vh));
 
   --image-max-width: 8rem;
+  --card-border: 0.1rem;
+  --card-shadow: 0.15rem 0.15rem 0 0;
 }
 
 *,
@@ -27,4 +29,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  padding: 1rem;
 }

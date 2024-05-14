@@ -1,8 +1,26 @@
 .good-card {
   display: grid;
   place-items: center;
+
+  box-shadow: var(--card-shadow) black;
 }
 
-.good-card__image {
+.good-card__main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  border: var(--card-border) solid;
+}
+
+.good-card__main-img {
   max-width: var(--image-max-width);
+}
+
+.good-card__footer {
+  width: 100%;
+  text-align: center;
+
+  border: var(--card-border) solid;
+  border-top: 0;
 }

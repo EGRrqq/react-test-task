@@ -3,8 +3,12 @@ import "./style.css";
 function GoodCard({ image, info }) {
   return (
     <section className="good-card">
-      {image}
-      <footer>{info}</footer>
+      <main className="good-card__main">
+        {image}
+      </main>
+      <footer className="good-card__footer">
+        {info}
+      </footer>
     </section>
   );
 }

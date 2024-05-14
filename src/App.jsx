@@ -2,6 +2,7 @@ import React from "react";
 import GoodList from "./pages/GoodListPage/GoodList";
 import { Router, Route, Link, Switch } from "wouter";
 import NotFound from "./pages/NotFoundPage/NotFound";
+import GoodItem from "./pages/GoodItemPage/GoodItem";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       </Route>
       <Route path="/:id">
         <main>
-          <h1>bruh</h1>
+          <GoodItem />
         </main>
       </Route>
 

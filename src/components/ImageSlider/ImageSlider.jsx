@@ -1,3 +1,4 @@
+import styles from "./ImageSlider.module.css";
 import React, { useState } from "react";
 
 const ImageSlider = ({ images }) => {
@@ -16,8 +17,8 @@ const ImageSlider = ({ images }) => {
   }
 
   return (
-    <section>
-      <aside>
+    <section className={styles["image-slider"]}>
+      <aside className={styles["image-slider__aside"]}>
         {images.map((image, index) => (
           <figure key={index}>
             <img
@@ -30,7 +31,7 @@ const ImageSlider = ({ images }) => {
         ))}
       </aside>
 
-      <div>
+      <div className={styles["image-slider__selected"]}>
         <figure>
           <img
             src={selectedImage}
@@ -39,9 +40,10 @@ const ImageSlider = ({ images }) => {
           />
         </figure>
 
-        <section></section>
-        <button onClick={handlePrevClick}>Prev</button>
-        <button onClick={handleNextClick}>Next</button>
+        <section>
+          <button onClick={handlePrevClick}>Prev</button>
+          <button onClick={handleNextClick}>Next</button>
+        </section>
       </div>
     </section>
   );

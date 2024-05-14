@@ -1,11 +1,15 @@
+import "./style.css";
+
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/api";
+import { useLocation } from "wouter";
+
 import GoodCard from "../../components/GoodCard/GoodCard";
 import GoodCardImage from "../../components/GoodCard/GoodCardImage";
-import "./style.css";
 
 function GoodList() {
   const [products, setProducts] = useState(undefined);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     getProducts().then((data) => {
@@ -20,7 +24,6 @@ function GoodList() {
           p.colors.map((c) => (
             <GoodCard
               key={`${p.id}_${c.id}`}
-              data-itemId={p.id}
               image={
                 <GoodCardImage
                   src={c.images[0]}
@@ -28,6 +31,7 @@ function GoodList() {
                 />
               }
               info={<p>{`${p.name}`}</p>}
+              onClick={() => setLocation(`/${p.id}`)}
             />
           ))
         )}

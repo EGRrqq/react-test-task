@@ -3,6 +3,8 @@
   flex-direction: column;
 
   box-shadow: var(--card-shadow) black;
+
+  cursor: pointer;
 }
 
 .good-card__main {

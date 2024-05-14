@@ -11,6 +11,11 @@ export default function App() {
           <GoodList />
         </main>
       </Route>
+      <Route path="/:id">
+        <main>
+          <h1>bruh</h1>
+        </main>
+      </Route>
 
       {/* Default Route (404) */}
       <Route>{(params) => <NotFound params={params} />}</Route>

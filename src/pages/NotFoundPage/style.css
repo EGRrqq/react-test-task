@@ -1,0 +1,10 @@
+.not-found {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.not-found > code {
+  font-size: calc(var(--main-font-size) * 0.6);
+}

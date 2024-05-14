@@ -16,6 +16,13 @@
   overflow-y: scroll;
 }
 
+.image-slider__aside-img--selected {
+  border: var(--card-border) solid;
+}
+.image-slider__aside-img--not-selected {
+  border: var(--card-border) solid transparent;
+}
+
 .image-slider__main {
   position: relative;
   margin-left: 100px;

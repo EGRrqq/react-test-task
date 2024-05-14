@@ -3,6 +3,7 @@ import { getProduct } from "../../services/api";
 
 import GoodCardImage from "../../components/GoodCard/GoodCardImage";
 import { useParams } from "wouter";
+import ImageSlider from "../../components/ImageSlider/ImageSlider";
 
 function GoodItem() {
   const [product, setProduct] = useState(undefined);
@@ -16,14 +17,7 @@ function GoodItem() {
 
   return (
     <article>
-      {product &&
-        product.colors.map((c) => (
-          <GoodCardImage
-            key={c.id}
-            src={c.images[0]}
-            alt={`${product.name}, цвет ${c.name}`}
-          />
-        ))}
+      {product && <ImageSlider images={product.colors[0].images} />}
     </article>
   );
 }

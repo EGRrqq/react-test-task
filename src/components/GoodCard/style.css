@@ -1,6 +1,6 @@
 .good-card {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
 
   box-shadow: var(--card-shadow) black;
 }
@@ -19,8 +19,15 @@
 
 .good-card__footer {
   width: 100%;
+  height: 100%;
+
   text-align: center;
+  overflow-wrap: break-word;
 
   border: var(--card-border) solid;
   border-top: 0;
+}
+.good-card__main > *,
+.good-card__footer > * {
+  padding: var(--card-items-padding);
 }

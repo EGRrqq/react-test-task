@@ -1,9 +1,9 @@
-import "./style.css";
+import styles from "./NotFound.module.css";
 import { Link } from "wouter";
 
 function NotFound({ params }) {
   return (
-    <main className="not-found">
+    <main className={styles["not-found"]}>
       <p>
         <b>404:</b> Страница <code>"/{params["*"]}"</code> не найдена!
       </p>

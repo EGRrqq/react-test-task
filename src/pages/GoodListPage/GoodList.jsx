@@ -1,4 +1,4 @@
-import "./style.css";
+import styles from "./GoodList.module.css";
 
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/api";
@@ -18,7 +18,7 @@ function GoodList() {
   }, []);
 
   return (
-    <article className="good-list">
+    <article className={styles["good-list"]}>
       {products &&
         products.map((p) =>
           p.colors.map((c) => (

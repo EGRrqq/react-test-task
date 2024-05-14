@@ -7,6 +7,18 @@
   overflow: hidden;
 }
 
+.image-slider img {
+  padding: var(--card-items-padding);
+}
+
+.image-slider button {
+  cursor: pointer;
+  border: var(--card-border) solid transparent;
+}
+.image-slider button:hover {
+  border: var(--card-border) solid;
+}
+
 .image-slider__aside {
   position: absolute;
   top: 0;
@@ -32,4 +44,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+
+  display: flex;
+  gap: 0.5rem;
 }

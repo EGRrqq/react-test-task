@@ -27,11 +27,17 @@ const ImageSlider = ({ images }) => {
 
   function handleNextClick() {
     const index = images.indexOf(selectedImage);
-    setSelectedImage(images[(index + 1) % images.length]);
+    const nextImage = images[(index + 1) % images.length];
+
+    setSelectedImage(nextImage);
+    handleSelectedStyles(document.querySelector(`img[src="${nextImage}"]`));
   }
   function handlePrevClick() {
     const index = images.indexOf(selectedImage);
-    setSelectedImage(images[(index - 1 + images.length) % images.length]);
+    const prevImage = images[(index - 1 + images.length) % images.length];
+
+    setSelectedImage(prevImage);
+    handleSelectedStyles(document.querySelector(`img[src="${prevImage}"]`));
   }
 
   return (

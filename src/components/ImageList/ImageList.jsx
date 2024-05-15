@@ -19,6 +19,7 @@ const ImageList = ({
   selectedImage,
   selectedStyles = defaultSelectedStyles,
   onMouseOver,
+  onImageSelect,
 }) => {
   const prevImageRef = useRef();
   const id = useId();
@@ -36,14 +37,24 @@ const ImageList = ({
     <div id={id} className={styles["searchable"]}>
       {images &&
         images.map((image) => (
-          <figure key={image} className={styles["item-wrapper"]}>
+          <label key={image} className={styles["item-wrapper"]}>
+            <input
+              type="radio"
+              name={name}
+              value={image}
+              className={styles["item-wrapper__input"]}
+              onChange={
+                onImageSelect ? () => onImageSelect(image) : () => undefined
+              }
+              checked={selectedImage === image}
+            />
             <img
               className={`${selectedStyles.notSelectedClass} ${styles["item-wrapper__item"]}`}
               src={image}
               alt={createImageAlt(image, name)}
-              onMouseOver={() => onMouseOver(image)}
+              onMouseOver={onMouseOver ? () => onMouseOver(image) : undefined}
             />
-          </figure>
+          </label>
         ))}
     </div>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProduct, getSizes } from "../../services/api";
 
-import { useParams } from "wouter";
+import { useLocation, useParams } from "wouter";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 
@@ -12,14 +12,15 @@ function GoodItem() {
   const [itemId, colorId] = params.id.split("-");
 
   const [product, setProduct] = useState(undefined);
-  const [sizes, setSizes] = useState([]);
   const [selectedImage, setSelectedImage] = useState(undefined);
+  const [location, setLocation] = useLocation();
 
-  useEffect(() => {
-    getSizes().then((data) => {
-      setSizes(data);
-    });
-  }, []);
+  function handleColorSelect(image) {
+    const selId =
+      product && product.colors.find((c) => c.images[0] === image).id;
+
+    setLocation(`/${itemId}-${selId}`);
+  }
 
   useEffect(() => {
     getProduct(itemId).then((data) => {
@@ -43,20 +44,10 @@ function GoodItem() {
               name={product.name}
               images={product.colors.map((c) => c.images[0])}
               selectedImage={selectedImage}
-              onMouseOver={setSelectedImage}
+              // onMouseOver={setSelectedImage}
+              onImageSelect={handleColorSelect}
             />
           }
-
-          // sizes={sizes.map((size) => {
-          //   const isDisabled =
-          //     product && !product.colors[colorId - 1].sizes.includes(size.id);
-
-          //   return (
-          //     <button key={size.id} disabled={isDisabled}>
-          //       {size.label}
-          //     </button>
-          //   );
-          // })}
         />
       )}
     </>

@@ -1,7 +1,19 @@
 import styles from "./ImageSlider.module.css";
 import { useEffect, useRef, useState } from "react";
+import {
+  getSelectedStyles,
+  getTargets,
+  handleSelectedStyles,
+} from "../ImageList/selectedStyles";
+import ImageList from "../ImageList/ImageList";
+import { createImageAlt } from "../../helpers";
 
-const ImageSlider = ({ images }) => {
+const selectedStyles = getSelectedStyles(
+  styles["image-slider__aside-img--not-selected"],
+  styles["image-slider__aside-img--selected"]
+);
+
+const ImageSlider = ({ images, name }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const prevImageRef = useRef();
   const asideRef = useRef();
@@ -9,6 +21,11 @@ const ImageSlider = ({ images }) => {
   useEffect(() => {
     setSelectedImage(images[0]);
   }, [images]);
+
+  useEffect(() => {
+    const target = document.querySelector(`img[src="${selectedImage}"]`);
+    handleSelectedStyles(getTargets(prevImageRef, target), selectedStyles);
+  }, [selectedImage]);
 
   // horizontal scroll for aside element
   // when it wraps (max-width: 639px)
@@ -38,64 +55,36 @@ const ImageSlider = ({ images }) => {
     };
   }, []);
 
-  function handleMouseOver(target, image) {
-    handleSelectedStyles(target);
-    setSelectedImage(image);
-  }
-
-  function handleSelectedStyles(target) {
-    if (prevImageRef.current) {
-      prevImageRef.current.classList.add(
-        styles["image-slider__aside-img--not-selected"]
-      );
-      prevImageRef.current.classList.remove(
-        styles["image-slider__aside-img--selected"]
-      );
-    }
-
-    target.classList.remove(styles["image-slider__aside-img--not-selected"]);
-    target.classList.add(styles["image-slider__aside-img--selected"]);
-    prevImageRef.current = target;
-  }
-
   function handleNextClick() {
     const index = images.indexOf(selectedImage);
-    const nextImage = images[(index + 1) % images.length];
+    const nextImageIndex = images[(index + 1) % images.length];
 
-    setSelectedImage(nextImage);
-    handleSelectedStyles(document.querySelector(`img[src="${nextImage}"]`));
+    setSelectedImage(nextImageIndex);
   }
   function handlePrevClick() {
     const index = images.indexOf(selectedImage);
-    const prevImage = images[(index - 1 + images.length) % images.length];
+    const prevImageIndex = images[(index - 1 + images.length) % images.length];
 
-    setSelectedImage(prevImage);
-    handleSelectedStyles(document.querySelector(`img[src="${prevImage}"]`));
+    setSelectedImage(prevImageIndex);
   }
 
   return (
     <section className={styles["image-slider"]}>
       <aside className={styles["image-slider__aside"]} ref={asideRef}>
-        {images.map((image, index) => (
-          <figure key={index}>
-            <img
-              className={
-                (styles["image-slider__aside-img--not-selected"],
-                styles["image-slider__aside-img"])
-              }
-              src={image}
-              alt=""
-              onMouseOver={(e) => handleMouseOver(e.target, image)}
-            />
-          </figure>
-        ))}
+        <ImageList
+          images={images}
+          name={name}
+          onMouseOver={setSelectedImage}
+          selectedImage={selectedImage}
+          selectedStyles={selectedStyles}
+        />
       </aside>
 
       <div className={styles["image-slider__main"]}>
         <figure>
           <img
             src={selectedImage}
-            alt=""
+            alt={createImageAlt(selectedImage, name)}
             className={styles["image-slider__main-img"]}
           />
         </figure>

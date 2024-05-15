@@ -11,10 +11,6 @@
   padding: 1rem;
 }
 
-.image-slider img {
-  padding: var(--card-items-padding);
-}
-
 .image-slider button {
   cursor: pointer;
   border: var(--card-border) solid transparent;
@@ -35,10 +31,6 @@
 
   scrollbar-width: none;
   overflow-y: scroll;
-}
-
-.image-slider__aside-img {
-  max-width: calc(var(--image-max-width) / 4);
 }
 
 .image-slider__aside-img--selected {

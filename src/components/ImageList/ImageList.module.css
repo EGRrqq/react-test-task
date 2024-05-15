@@ -1,0 +1,8 @@
+.item-wrapper {
+  display: grid;
+}
+
+.item-wrapper__item {
+  padding: var(--card-items-padding);
+  max-width: calc(var(--image-max-width) / 4);
+}

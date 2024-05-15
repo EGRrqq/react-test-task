@@ -29,19 +29,11 @@ function GoodItem() {
     <>
       {product && (
         <GoodDetailedCard
-          slider={<ImageSlider images={product.colors[selectedColor].images} />}
-          select={
-            <select
-              name="colors"
-              id="colors"
-              onChange={(e) => setSelectedColor(e.target.value - 1)}
-            >
-              {product.colors.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
+          slider={
+            <ImageSlider
+              images={product.colors[selectedColor].images}
+              name={product.name}
+            />
           }
           sizes={sizes.map((size) => {
             const isDisabled =

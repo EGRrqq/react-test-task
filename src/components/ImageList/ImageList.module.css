@@ -13,3 +13,10 @@
 .item-wrapper__item--not-selected {
   border: var(--card-border) solid transparent;
 }
+
+.searchable {
+  display: inherit;
+  flex-direction: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+}

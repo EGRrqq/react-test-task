@@ -1,6 +1,6 @@
 import styles from "./ImageList.module.css";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import {
   getSelectedStyles,
   getTargets,
@@ -21,27 +21,31 @@ const ImageList = ({
   onMouseOver,
 }) => {
   const prevImageRef = useRef();
+  const id = useId();
 
   useEffect(() => {
-    const target = document.querySelector(`img[src="${selectedImage}"]`);
-    handleSelectedStyles(getTargets(prevImageRef, target), selectedStyles);
-  }, [selectedImage, selectedStyles]);
+    const target = document
+      .getElementById(id)
+      .querySelector(`img[src="${selectedImage}"]`);
+
+    if (target)
+      handleSelectedStyles(getTargets(prevImageRef, target), selectedStyles);
+  }, [selectedImage, selectedStyles, id]);
 
   return (
-    <>
-      {images.map((image) => (
-        <figure key={image} className={styles["item-wrapper"]}>
-          <img
-            className={
-              (selectedStyles.notSelectedClass, styles["item-wrapper__item"])
-            }
-            src={image}
-            alt={createImageAlt(image, name)}
-            onMouseOver={() => onMouseOver(image)}
-          />
-        </figure>
-      ))}
-    </>
+    <div id={id} className={styles["searchable"]}>
+      {images &&
+        images.map((image) => (
+          <figure key={image} className={styles["item-wrapper"]}>
+            <img
+              className={`${selectedStyles.notSelectedClass} ${styles["item-wrapper__item"]}`}
+              src={image}
+              alt={createImageAlt(image, name)}
+              onMouseOver={() => onMouseOver(image)}
+            />
+          </figure>
+        ))}
+    </div>
   );
 };
 

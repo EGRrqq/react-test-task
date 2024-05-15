@@ -5,13 +5,15 @@ import { useParams } from "wouter";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 
+import ImageList from "../../components/ImageList/ImageList";
+
 function GoodItem() {
   const params = useParams();
   const [itemId, colorId] = params.id.split("-");
 
   const [product, setProduct] = useState(undefined);
   const [sizes, setSizes] = useState([]);
-  const [selectedColor, setSelectedColor] = useState(colorId - 1 || 0);
+  const [selectedImage, setSelectedImage] = useState(undefined);
 
   useEffect(() => {
     getSizes().then((data) => {
@@ -22,8 +24,9 @@ function GoodItem() {
   useEffect(() => {
     getProduct(itemId).then((data) => {
       setProduct(data);
+      setSelectedImage(data.colors[colorId - 1].images[0]);
     });
-  }, [itemId]);
+  }, [itemId, colorId]);
 
   return (
     <>
@@ -31,20 +34,29 @@ function GoodItem() {
         <GoodDetailedCard
           slider={
             <ImageSlider
-              images={product.colors[selectedColor].images}
+              images={product.colors[colorId - 1].images}
               name={product.name}
             />
           }
-          sizes={sizes.map((size) => {
-            const isDisabled =
-              product && !product.colors[selectedColor].sizes.includes(size.id);
+          select={
+            <ImageList
+              name={product.name}
+              images={product.colors.map((c) => c.images[0])}
+              selectedImage={selectedImage}
+              onMouseOver={setSelectedImage}
+            />
+          }
 
-            return (
-              <button key={size.id} disabled={isDisabled}>
-                {size.label}
-              </button>
-            );
-          })}
+          // sizes={sizes.map((size) => {
+          //   const isDisabled =
+          //     product && !product.colors[colorId - 1].sizes.includes(size.id);
+
+          //   return (
+          //     <button key={size.id} disabled={isDisabled}>
+          //       {size.label}
+          //     </button>
+          //   );
+          // })}
         />
       )}
     </>

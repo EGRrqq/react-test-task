@@ -1,31 +1,15 @@
 import styles from "./ImageSlider.module.css";
 import { useEffect, useRef, useState } from "react";
-import {
-  getSelectedStyles,
-  getTargets,
-  handleSelectedStyles,
-} from "../ImageList/selectedStyles";
 import ImageList from "../ImageList/ImageList";
 import { createImageAlt } from "../../helpers";
 
-const selectedStyles = getSelectedStyles(
-  styles["image-slider__aside-img--not-selected"],
-  styles["image-slider__aside-img--selected"]
-);
-
 const ImageSlider = ({ images, name }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
-  const prevImageRef = useRef();
   const asideRef = useRef();
 
   useEffect(() => {
     setSelectedImage(images[0]);
   }, [images]);
-
-  useEffect(() => {
-    const target = document.querySelector(`img[src="${selectedImage}"]`);
-    handleSelectedStyles(getTargets(prevImageRef, target), selectedStyles);
-  }, [selectedImage]);
 
   // horizontal scroll for aside element
   // when it wraps (max-width: 639px)
@@ -76,7 +60,6 @@ const ImageSlider = ({ images, name }) => {
           name={name}
           onMouseOver={setSelectedImage}
           selectedImage={selectedImage}
-          selectedStyles={selectedStyles}
         />
       </aside>
 

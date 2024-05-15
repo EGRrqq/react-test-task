@@ -6,3 +6,10 @@
   padding: var(--card-items-padding);
   max-width: calc(var(--image-max-width) / 4);
 }
+
+.item-wrapper__item--selected {
+  border: var(--card-border) solid;
+}
+.item-wrapper__item--not-selected {
+  border: var(--card-border) solid transparent;
+}

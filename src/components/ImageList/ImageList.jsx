@@ -1,14 +1,23 @@
 import styles from "./ImageList.module.css";
 
 import { useEffect, useRef } from "react";
-import { getTargets, handleSelectedStyles } from "./selectedStyles";
+import {
+  getSelectedStyles,
+  getTargets,
+  handleSelectedStyles,
+} from "./selectedStyles";
 import { createImageAlt } from "../../helpers/index";
+
+const defaultSelectedStyles = getSelectedStyles(
+  styles["item-wrapper__item--not-selected"],
+  styles["item-wrapper__item--selected"]
+);
 
 const ImageList = ({
   images,
   name,
   selectedImage,
-  selectedStyles,
+  selectedStyles = defaultSelectedStyles,
   onMouseOver,
 }) => {
   const prevImageRef = useRef();

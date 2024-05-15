@@ -1,8 +1,11 @@
-function GoodDetailedCard({ slider, select }) {
+function GoodDetailedCard({ slider, select, sizes }) {
   return (
     <article>
       {slider}
-      <section>{select}</section>
+      <section style={{ display: "flex", gap: "1rem" }}>
+        {select}
+        {sizes}
+      </section>
     </article>
   );
 }

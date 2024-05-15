@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProduct } from "../../services/api";
 
-import GoodCardImage from "../../components/GoodCard/GoodCardImage";
 import { useParams } from "wouter";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
+import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 
 function GoodItem() {
   const [product, setProduct] = useState(undefined);
@@ -16,9 +16,11 @@ function GoodItem() {
   }, [params]);
 
   return (
-    <article>
-      {product && <ImageSlider images={product.colors[0].images} />}
-    </article>
+    <>
+      <GoodDetailedCard
+        slider={product && <ImageSlider images={product.colors[0].images} />}
+      />
+    </>
   );
 }
 

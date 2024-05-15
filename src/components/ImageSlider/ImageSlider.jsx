@@ -16,14 +16,6 @@ const ImageSlider = ({ images }) => {
       }
     };
 
-    // const asideElement = asideRef.current;
-    // if (asideElement) {
-    //   asideElement.addEventListener("wheel", handleScroll);
-
-    //   return () => {
-    //     asideElement.removeEventListener("wheel", handleScroll);
-    //   };
-    // }
     const mql = window.matchMedia("(max-width: 639px)");
     const checkMatchMedia = (mql) => {
       const asideElement = asideRef.current;

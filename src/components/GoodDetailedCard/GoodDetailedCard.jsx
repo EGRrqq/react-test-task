@@ -2,10 +2,10 @@ function GoodDetailedCard({ slider, select, sizes }) {
   return (
     <article>
       {slider}
-      <section style={{ display: "flex", gap: "1rem" }}>
+      <form style={{ display: "flex", gap: "1rem" }}>
         {select}
         {sizes}
-      </section>
+      </form>
     </article>
   );
 }

@@ -14,14 +14,7 @@ const products = [
       {
         id: 1,
         name: "черный",
-        images: [
-          "/images/1/black_front.png",
-          "/images/1/black_back.png",
-          "/images/1/black_front.png",
-          "/images/1/black_back.png",
-          "/images/1/black_front.png",
-          "/images/1/black_back.png",
-        ],
+        images: ["/images/1/black_front.png", "/images/1/black_back.png"],
         price: "123.00",
         description: 'Описание для "Футболка черный"',
         sizes: [1, 2, 3],
@@ -52,14 +45,7 @@ const products = [
       {
         id: 1,
         name: "желтый",
-        images: [
-          "/images/2/yellow_front.png",
-          "/images/2/yellow_back.png",
-          "/images/2/yellow_front.png",
-          "/images/2/yellow_back.png",
-          "/images/2/yellow_front.png",
-          "/images/2/yellow_back.png",
-        ],
+        images: ["/images/2/yellow_front.png", "/images/2/yellow_back.png"],
         price: "88.00",
         description: 'Описание для "Майка желтый"',
         sizes: [1, 2, 3, 4, 5],

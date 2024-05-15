@@ -1,5 +1,10 @@
-function GoodDetailedCard({ slider }) {
-  return <article>{slider}</article>;
+function GoodDetailedCard({ slider, select }) {
+  return (
+    <article>
+      {slider}
+      <section>{select}</section>
+    </article>
+  );
 }
 
 export default GoodDetailedCard;

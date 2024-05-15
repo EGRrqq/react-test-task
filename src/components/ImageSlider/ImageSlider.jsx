@@ -6,6 +6,10 @@ const ImageSlider = ({ images }) => {
   const prevImageRef = useRef();
   const asideRef = useRef();
 
+  useEffect(() => {
+    setSelectedImage(images[0]);
+  }, [images]);
+
   // horizontal scroll for aside element
   // when it wraps (max-width: 639px)
   useEffect(() => {

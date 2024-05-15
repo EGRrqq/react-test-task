@@ -7,19 +7,37 @@ import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard
 
 function GoodItem() {
   const [product, setProduct] = useState(undefined);
+  const [selectedColor, setSelectedColor] = useState(0);
+
   const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
-    getProduct(params.id).then((data) => {
+    getProduct(id).then((data) => {
       setProduct(data);
     });
-  }, [params]);
+  }, [id]);
 
   return (
     <>
-      <GoodDetailedCard
-        slider={product && <ImageSlider images={product.colors[0].images} />}
-      />
+      {product && (
+        <GoodDetailedCard
+          slider={<ImageSlider images={product.colors[selectedColor].images} />}
+          select={
+            <select
+              name="colors"
+              id="colors"
+              onChange={(e) => setSelectedColor(e.target.value - 1)}
+            >
+              {product.colors.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          }
+        />
+      )}
     </>
   );
 }

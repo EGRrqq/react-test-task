@@ -1,9 +1,46 @@
 import styles from "./ImageSlider.module.css";
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ImageSlider = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
-  const prevImageRef = React.useRef();
+  const prevImageRef = useRef();
+  const asideRef = useRef();
+
+  // horizontal scroll for aside element
+  // when it wraps (max-width: 639px)
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if (!e.ctrlKey) {
+        e.preventDefault();
+        asideRef.current.scrollLeft += e.deltaY;
+      }
+    };
+
+    // const asideElement = asideRef.current;
+    // if (asideElement) {
+    //   asideElement.addEventListener("wheel", handleScroll);
+
+    //   return () => {
+    //     asideElement.removeEventListener("wheel", handleScroll);
+    //   };
+    // }
+    const mql = window.matchMedia("(max-width: 639px)");
+    const checkMatchMedia = (mql) => {
+      const asideElement = asideRef.current;
+      if (mql.matches) {
+        asideElement.addEventListener("wheel", handleScroll);
+      } else {
+        asideElement.removeEventListener("wheel", handleScroll);
+      }
+    };
+
+    mql.addEventListener("change", checkMatchMedia);
+    checkMatchMedia(mql);
+
+    return () => {
+      mql.removeEventListener("change", checkMatchMedia);
+    };
+  }, []);
 
   function handleMouseOver(target, image) {
     handleSelectedStyles(target);
@@ -42,7 +79,7 @@ const ImageSlider = ({ images }) => {
 
   return (
     <section className={styles["image-slider"]}>
-      <aside className={styles["image-slider__aside"]}>
+      <aside className={styles["image-slider__aside"]} ref={asideRef}>
         {images.map((image, index) => (
           <figure key={index}>
             <img

@@ -5,6 +5,8 @@
   --card-border: 0.1rem;
   --card-shadow: 0.15rem 0.15rem 0 0;
   --card-items-padding: 0.25rem;
+
+  --slider-padding: calc(var(--image-max-width) / 2);
 }
 
 *,

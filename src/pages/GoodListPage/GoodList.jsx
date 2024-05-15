@@ -31,7 +31,7 @@ function GoodList() {
                 />
               }
               info={<p>{`${p.name}`}</p>}
-              onClick={() => setLocation(`/${p.id}`)}
+              onClick={() => setLocation(`/${p.id}-${c.id}`)}
             />
           ))
         )}

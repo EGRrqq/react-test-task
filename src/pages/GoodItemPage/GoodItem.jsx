@@ -6,17 +6,17 @@ import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 
 function GoodItem() {
-  const [product, setProduct] = useState(undefined);
-  const [selectedColor, setSelectedColor] = useState(0);
-
   const params = useParams();
-  const id = params.id;
+  const [itemId, colorId] = params.id.split("-");
+
+  const [product, setProduct] = useState(undefined);
+  const [selectedColor, setSelectedColor] = useState(colorId - 1 || 0);
 
   useEffect(() => {
-    getProduct(id).then((data) => {
+    getProduct(itemId).then((data) => {
       setProduct(data);
     });
-  }, [id]);
+  }, [itemId]);
 
   return (
     <>

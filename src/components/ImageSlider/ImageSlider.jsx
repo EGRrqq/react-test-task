@@ -2,6 +2,7 @@ import styles from "./ImageSlider.module.css";
 import { useEffect, useRef, useState } from "react";
 import ImageList from "../ImageList/ImageList";
 import { createImageAlt } from "../../helpers";
+import useHorizontalScroll from "../../hooks/useHorizontalScroll";
 
 const ImageSlider = ({ images, name }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
@@ -11,33 +12,7 @@ const ImageSlider = ({ images, name }) => {
     setSelectedImage(images[0]);
   }, [images]);
 
-  // horizontal scroll for aside element
-  // when it wraps (max-width: 639px)
-  useEffect(() => {
-    const handleScroll = (e) => {
-      if (!e.ctrlKey) {
-        e.preventDefault();
-        asideRef.current.scrollLeft += e.deltaY;
-      }
-    };
-
-    const mql = window.matchMedia("(max-width: 639px)");
-    const checkMatchMedia = (mql) => {
-      const asideElement = asideRef.current;
-      if (mql.matches) {
-        asideElement.addEventListener("wheel", handleScroll);
-      } else {
-        asideElement.removeEventListener("wheel", handleScroll);
-      }
-    };
-
-    mql.addEventListener("change", checkMatchMedia);
-    checkMatchMedia(mql);
-
-    return () => {
-      mql.removeEventListener("change", checkMatchMedia);
-    };
-  }, []);
+  useHorizontalScroll(asideRef, "(max-width: 639px)");
 
   function handleNextClick() {
     const index = images.indexOf(selectedImage);

@@ -31,6 +31,7 @@ function GoodItemForm({ product, itemId, colorId }) {
         <GoodItemSizes
           curSizes={product.colors[colorId - 1].sizes}
           register={register}
+          setValue={setValue}
         />
       }
       action={<button type="submit">в корзину</button>}

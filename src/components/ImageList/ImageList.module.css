@@ -20,6 +20,30 @@
   max-width: calc(var(--image-max-width) / 4);
 }
 
+.item-wrapper__btn {
+  min-width: 3rem;
+  min-height: 1.5rem;
+}
+
+.item-wrapper__btn--selectable {
+  border: solid rgb(218 218 218);
+}
+
+.item-wrapper__btn:enabled {
+  border: solid rgb(224 224 224);
+}
+.item-wrapper__btn:enabled:hover {
+  border: var(--card-border) solid rgba(0, 0, 0, 0.5);
+}
+.item-wrapper__radio:checked + .item-wrapper__btn:enabled {
+  border: var(--card-border) solid;
+}
+
+.item-wrapper__btn:disabled {
+  background-color: rgb(250 250 250);
+  border: solid rgb(240 240 240);
+}
+
 .item-wrapper--selected {
   filter: brightness(0.8);
   background-color: var(--bg-color-light);

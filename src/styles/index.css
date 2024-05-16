@@ -10,6 +10,8 @@
   --slider-padding: calc(var(--image-max-width) / 2);
 
   --bg-color-light: white;
+  --error-color: #ee0000;
+
   --border-color-enable-light: rgb(224 224 224);
   --border-color-disable-light: rgb(240 240 240);
   --border-color-hover-dark: rgba(0, 0, 0, 0.5);

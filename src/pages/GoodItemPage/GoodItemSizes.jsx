@@ -1,21 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getSizes } from "../../services/api";
 import Input from "../../components/solid/Input";
 
-import styles from "../../components/ImageList/ImageList.module.css";
+import listStyles from "../../components/ImageList/ImageList.module.css";
+import itemStyles from "./GoodItem.module.css";
 
-function GoodItemSizes({ curSizes, register, setValue }) {
+function GoodItemSizes({ curSizes, register, setValue, getError }) {
   const [sizes, setSizes] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(getError);
+  const listRef = useRef();
+  const fieldset = listRef.current && listRef.current.closest("fieldset");
 
   const isDisabled = (size) => curSizes && !curSizes.includes(size.id);
 
   function handleButtonClick(e, size) {
     e.preventDefault();
 
+    getError && fieldset.classList.remove(`${itemStyles["fieldset--error"]}`);
     setValue("size-id", size.id);
     setSelectedSize(size.id);
   }
+
+  useEffect(() => {
+    getError && fieldset.classList.add(`${itemStyles["fieldset--error"]}`);
+  }, [fieldset, getError]);
 
   useEffect(() => {
     getSizes().then((data) => {
@@ -24,12 +32,12 @@ function GoodItemSizes({ curSizes, register, setValue }) {
   }, []);
 
   return (
-    <div className={styles["list"]}>
+    <div className={listStyles["list"]} ref={listRef}>
       {sizes &&
         sizes.map((size) => (
-          <label key={size.id} className={`${styles["item-wrapper"]}`}>
+          <label key={size.id} className={`${listStyles["item-wrapper"]}`}>
             <Input
-              className={styles["item-wrapper__radio"]}
+              className={listStyles["item-wrapper__radio"]}
               type="radio"
               name={"size-id"}
               required={true}
@@ -41,8 +49,8 @@ function GoodItemSizes({ curSizes, register, setValue }) {
             <button
               disabled={isDisabled(size)}
               className={`${
-                !isDisabled(size) && styles["item-wrapper--selectable"]
-              } ${styles["item-wrapper__btn"]}`}
+                !isDisabled(size) && listStyles["item-wrapper--selectable"]
+              } ${listStyles["item-wrapper__btn"]}`}
               onClick={(e) => handleButtonClick(e, size)}
               type="button"
             >

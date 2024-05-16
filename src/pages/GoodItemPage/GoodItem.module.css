@@ -21,3 +21,7 @@
 .form__action:hover {
   border: solid;
 }
+
+.fieldset--error {
+  color: var(--error-color);
+}

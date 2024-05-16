@@ -14,7 +14,6 @@ function GoodItemForm({ product, itemId, colorId }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(errors);
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
@@ -45,6 +44,7 @@ function GoodItemForm({ product, itemId, colorId }) {
             curSizes={product.colors[colorId - 1].sizes}
             register={register}
             setValue={setValue}
+            getError={!!errors["size-id"]}
           />
         </>
       }

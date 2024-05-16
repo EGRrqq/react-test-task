@@ -6,6 +6,7 @@ import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 
 import ImageList from "../../components/ImageList/ImageList";
+import NotFound from "../NotFoundPage/NotFound";
 
 function GoodItem() {
   const params = useParams();
@@ -14,6 +15,7 @@ function GoodItem() {
   const [product, setProduct] = useState(undefined);
   const [selectedImage, setSelectedImage] = useState(undefined);
   const [location, setLocation] = useLocation();
+  console.log(location);
 
   function handleColorSelect(image) {
     const selId =
@@ -23,11 +25,15 @@ function GoodItem() {
   }
 
   useEffect(() => {
-    getProduct(itemId).then((data) => {
-      setProduct(data);
-      setSelectedImage(data.colors[colorId - 1].images[0]);
-    });
-  }, [itemId, colorId]);
+    getProduct(itemId)
+      .then((data) => {
+        setProduct(data);
+        setSelectedImage(data.colors[colorId - 1].images[0]);
+      })
+      .catch((e) => {
+        setLocation(`/`);
+      });
+  }, [itemId, colorId, setLocation]);
 
   return (
     <>
@@ -44,7 +50,6 @@ function GoodItem() {
               name={product.name}
               images={product.colors.map((c) => c.images[0])}
               selectedImage={selectedImage}
-              // onMouseOver={setSelectedImage}
               onImageSelect={handleColorSelect}
             />
           }

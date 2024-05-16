@@ -11,7 +11,7 @@ const colorSelectedStyles = getSelectedStyles(
   styles["color--selected"]
 );
 
-function GoodItemColors({ product, register, itemId, colorId }) {
+function GoodItemColors({ product, register, itemId, colorId, setValue }) {
   const [, setLocation] = useLocation();
   const [selectedImage, setSelectedImage] = useState(
     product ? product.colors[colorId - 1].images[0] : undefined
@@ -21,6 +21,7 @@ function GoodItemColors({ product, register, itemId, colorId }) {
     const newColorId =
       product && product.colors.find((c) => c.images[0] === image).id;
 
+    setValue("color-id", newColorId);
     setLocation(itemWithColorPath(itemId, newColorId));
   }
 

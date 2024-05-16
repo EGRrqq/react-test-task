@@ -26,6 +26,10 @@ function GoodItemColors({ product, register, itemId, colorId, setValue }) {
   }
 
   useEffect(() => {
+    setValue("color-id", colorId);
+  }, [setValue, colorId]);
+
+  useEffect(() => {
     product && setSelectedImage(product.colors[colorId - 1].images[0]);
   }, [product, colorId]);
 

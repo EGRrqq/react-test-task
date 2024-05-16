@@ -3,14 +3,18 @@ import { useEffect, useState } from "react";
 import { getSizes } from "../../services/api";
 import { useForm } from "react-hook-form";
 import GoodItemColors from "./GoodItemColors";
+import Input from "../../components/solid/Input";
 
 function GoodItemForm({ product, itemId, colorId }) {
   const [sizes, setSizes] = useState([]);
-  const { register, setValue, handleSubmit } = useForm();
+  const { control, register, setValue, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
+  const isDisabled = (size) =>
+    product && sizes && !product.colors[colorId - 1].sizes.includes(size.id);
+
   useEffect(() => {
     setValue("item-id", itemId);
   }, [itemId, setValue]);
@@ -24,6 +28,7 @@ function GoodItemForm({ product, itemId, colorId }) {
   return (
     <GoodForm
       onSubmit={handleSubmit(onSubmit)}
+      control={control}
       colors={
         <GoodItemColors
           product={product}
@@ -32,20 +37,29 @@ function GoodItemForm({ product, itemId, colorId }) {
           itemId={itemId}
         />
       }
-      sizes={sizes.map((size) => {
-        const isDisabled =
-          product && !product.colors[colorId - 1].sizes.includes(size.id);
-
-        return (
-          <button
-            key={size.id}
-            disabled={isDisabled}
-            onClick={(e) => e.preventDefault()}
-          >
-            {size.label}
-          </button>
-        );
-      })}
+      sizes={
+        <div>
+          {sizes.map((size) => (
+            <label key={size.id}>
+              <Input
+                type="radio"
+                name={"size-id"}
+                // required={true}
+                register={register}
+                value={size.id}
+                disabled={isDisabled(size)}
+              />
+              <button
+                disabled={isDisabled(size)}
+                onClick={(e) => e.preventDefault()}
+              >
+                {size.label}
+              </button>
+            </label>
+          ))}
+        </div>
+      }
+      action={<button type="submit">в корзину</button>}
     />
   );
 }

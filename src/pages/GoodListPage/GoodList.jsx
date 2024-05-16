@@ -6,6 +6,7 @@ import { useLocation } from "wouter";
 
 import GoodCard from "../../components/GoodCard/GoodCard";
 import GoodCardImage from "../../components/GoodCard/GoodCardImage";
+import { itemWithColorPath } from "../../helpers";
 
 function GoodList() {
   const [products, setProducts] = useState(undefined);
@@ -31,7 +32,7 @@ function GoodList() {
                 />
               }
               info={<p>{`${p.name}`}</p>}
-              onClick={() => setLocation(`/${p.id}-${c.id}`)}
+              onClick={() => setLocation(itemWithColorPath(p.id, c.id))}
             />
           ))
         )}

@@ -9,6 +9,7 @@ import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard
 import ImageList from "../../components/ImageList/ImageList";
 import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
 import GoodForm from "../../components/GoodDetailedCard/GoodForm";
+import { itemWithColorPath } from "../../helpers";
 
 const colorSelectedStyles = getSelectedStyles(
   styles["color--not-selected"],
@@ -25,10 +26,10 @@ function GoodItem() {
   const [sizes, setSizes] = useState([]);
 
   function handleColorSelect(image) {
-    const selId =
+    const colorId =
       product && product.colors.find((c) => c.images[0] === image).id;
 
-    setLocation(`/${itemId}-${selId}`);
+    setLocation(itemWithColorPath(itemId, colorId));
   }
 
   useEffect(() => {
@@ -40,13 +41,15 @@ function GoodItem() {
   useEffect(() => {
     getProduct(itemId)
       .then((data) => {
+        if (!data.colors[colorId - 1]) setLocation(`/`);
+
         setProduct(data);
         setSelectedImage(data.colors[colorId - 1].images[0]);
       })
       .catch((e) => {
         setLocation(`/`);
       });
-  }, [itemId, colorId, setLocation]);
+  }, [itemId, setLocation, colorId]);
 
   return (
     <>

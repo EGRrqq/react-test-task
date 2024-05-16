@@ -7,6 +7,7 @@ import { useLocation } from "wouter";
 import { itemWithColorPath } from "../../helpers";
 import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
 import { getSizes } from "../../services/api";
+import { useForm } from "react-hook-form";
 
 const colorSelectedStyles = getSelectedStyles(
   styles["color--not-selected"],
@@ -16,8 +17,15 @@ const colorSelectedStyles = getSelectedStyles(
 function GoodItemForm({ product, itemId, colorId }) {
   const [location, setLocation] = useLocation();
 
-  const [selectedImage, setSelectedImage] = useState(undefined);
+  const [selectedImage, setSelectedImage] = useState(
+    product ? product.colors[colorId - 1].images[0] : undefined
+  );
   const [sizes, setSizes] = useState([]);
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
 
   function handleColorSelect(image) {
     const colorId =
@@ -38,6 +46,7 @@ function GoodItemForm({ product, itemId, colorId }) {
 
   return (
     <GoodForm
+      onSubmit={handleSubmit(onSubmit)}
       select={
         <ImageList
           name={product.name}
@@ -45,6 +54,7 @@ function GoodItemForm({ product, itemId, colorId }) {
           selectedImage={selectedImage}
           onImageSelect={handleColorSelect}
           selectedStyles={colorSelectedStyles}
+          register={register}
         />
       }
       sizes={sizes.map((size) => {

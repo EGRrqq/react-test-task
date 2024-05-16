@@ -20,9 +20,14 @@ const ImageList = ({
   selectedStyles = defaultSelectedStyles,
   onMouseOver,
   onImageSelect,
+  register,
 }) => {
   const prevImageRef = useRef();
   const id = useId();
+
+  const wrapperSelectedStyles = () =>
+    onImageSelect ? `${styles["item-wrapper--selectable"]}` : "";
+  const registerProps = register ? register(name) : {};
 
   useEffect(() => {
     const target = document
@@ -32,9 +37,6 @@ const ImageList = ({
     if (target)
       handleSelectedStyles(getTargets(prevImageRef, target), selectedStyles);
   }, [selectedImage, selectedStyles, id]);
-
-  const wrapperSelectedStyles = () =>
-    onImageSelect ? `${styles["item-wrapper--selectable"]}` : "";
 
   return (
     <div id={id} className={styles["list"]}>
@@ -47,9 +49,9 @@ const ImageList = ({
             } ${wrapperSelectedStyles()}`}
           >
             <input
+              {...registerProps}
               type="radio"
-              name={name}
-              value={image}
+              value={selectedImage}
               className={styles["item-wrapper__radio"]}
               onChange={
                 onImageSelect ? () => onImageSelect(image) : () => undefined

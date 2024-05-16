@@ -1,9 +1,11 @@
 // styles in classes only when the form markup is complete
-function GoodForm({ select, sizes }) {
+function GoodForm({ onSubmit, select, sizes }) {
   return (
-    <form style={{ display: "flex", gap: "1rem" }}>
-      <section style={{ display: "flex" }}>{select}</section>
-      <section style={{ display: "flex" }}>{sizes}</section>
+    <form style={{ display: "flex", gap: "1rem" }} onSubmit={onSubmit}>
+      <fieldset style={{ display: "flex" }}>{select}</fieldset>
+      <fieldset style={{ display: "flex" }}>{sizes}</fieldset>
+
+      <button type="submit">bruh</button>
     </form>
   );
 }

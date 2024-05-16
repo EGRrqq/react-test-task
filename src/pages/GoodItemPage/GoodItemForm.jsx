@@ -16,23 +16,25 @@ const colorSelectedStyles = getSelectedStyles(
 
 function GoodItemForm({ product, itemId, colorId }) {
   const [location, setLocation] = useLocation();
-
   const [selectedImage, setSelectedImage] = useState(
     product ? product.colors[colorId - 1].images[0] : undefined
   );
   const [sizes, setSizes] = useState([]);
+  const { register, setValue, handleSubmit } = useForm();
 
-  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
-
   function handleColorSelect(image) {
     const colorId =
       product && product.colors.find((c) => c.images[0] === image).id;
 
     setLocation(itemWithColorPath(itemId, colorId));
   }
+
+  useEffect(() => {
+    setValue("item-id", itemId);
+  }, [itemId, setValue]);
 
   useEffect(() => {
     product && setSelectedImage(product.colors[colorId - 1].images[0]);
@@ -49,12 +51,14 @@ function GoodItemForm({ product, itemId, colorId }) {
       onSubmit={handleSubmit(onSubmit)}
       select={
         <ImageList
-          name={product.name}
+          name={"color-id"}
           images={product.colors.map((c) => c.images[0])}
           selectedImage={selectedImage}
           onImageSelect={handleColorSelect}
           selectedStyles={colorSelectedStyles}
           register={register}
+          value={colorId}
+          required={true}
         />
       }
       sizes={sizes.map((size) => {

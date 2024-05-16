@@ -7,6 +7,7 @@ import {
   handleSelectedStyles,
 } from "./selectedStyles";
 import { createImageAlt } from "../../helpers/index";
+import Input from "../solid/Input";
 
 const defaultSelectedStyles = getSelectedStyles(
   "",
@@ -15,7 +16,10 @@ const defaultSelectedStyles = getSelectedStyles(
 
 const ImageList = ({
   images,
+  label,
   name,
+  required,
+  value,
   selectedImage,
   selectedStyles = defaultSelectedStyles,
   onMouseOver,
@@ -27,7 +31,6 @@ const ImageList = ({
 
   const wrapperSelectedStyles = () =>
     onImageSelect ? `${styles["item-wrapper--selectable"]}` : "";
-  const registerProps = register ? register(name) : {};
 
   useEffect(() => {
     const target = document
@@ -48,11 +51,13 @@ const ImageList = ({
               styles["item-wrapper"]
             } ${wrapperSelectedStyles()}`}
           >
-            <input
-              {...registerProps}
+            <Input
               type="radio"
-              value={selectedImage}
               className={styles["item-wrapper__radio"]}
+              name={name}
+              required={required}
+              register={register}
+              value={value || selectedImage}
               onChange={
                 onImageSelect ? () => onImageSelect(image) : () => undefined
               }
@@ -61,7 +66,7 @@ const ImageList = ({
             <img
               className={`${styles["item-wrapper__img"]}`}
               src={image}
-              alt={createImageAlt(image, name)}
+              alt={createImageAlt(image, label)}
               onMouseOver={onMouseOver ? () => onMouseOver(image) : undefined}
             />
           </label>

@@ -29,8 +29,6 @@ function GoodItemForm({ product, itemId, colorId }) {
       }
       sizes={
         <GoodItemSizes
-          product={product}
-          colorId={colorId}
           curSizes={product.colors[colorId - 1].sizes}
           register={register}
         />

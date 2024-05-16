@@ -1,0 +1,11 @@
+.color--selected {
+  border: var(--card-border) solid;
+}
+
+.color--not-selected {
+  border: var(--card-border) solid transparent;
+}
+
+.color--not-selected:hover {
+  border: var(--card-border) solid rgba(0, 0, 0, 0.5);
+}

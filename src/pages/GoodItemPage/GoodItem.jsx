@@ -1,12 +1,18 @@
+import styles from "./GoodItem.module.css";
+
 import { useEffect, useState } from "react";
 import { getProduct, getSizes } from "../../services/api";
-
 import { useLocation, useParams } from "wouter";
+
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
-
 import ImageList from "../../components/ImageList/ImageList";
-import NotFound from "../NotFoundPage/NotFound";
+import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
+
+const colorSelectedStyles = getSelectedStyles(
+  styles["color--not-selected"],
+  styles["color--selected"]
+);
 
 function GoodItem() {
   const params = useParams();
@@ -15,7 +21,6 @@ function GoodItem() {
   const [product, setProduct] = useState(undefined);
   const [selectedImage, setSelectedImage] = useState(undefined);
   const [location, setLocation] = useLocation();
-  console.log(location);
 
   function handleColorSelect(image) {
     const selId =
@@ -51,6 +56,7 @@ function GoodItem() {
               images={product.colors.map((c) => c.images[0])}
               selectedImage={selectedImage}
               onImageSelect={handleColorSelect}
+              selectedStyles={colorSelectedStyles}
             />
           }
         />

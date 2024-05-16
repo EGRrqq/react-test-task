@@ -9,7 +9,7 @@ import {
 import { createImageAlt } from "../../helpers/index";
 
 const defaultSelectedStyles = getSelectedStyles(
-  styles["item-wrapper--not-selected"],
+  "",
   styles["item-wrapper--selected"]
 );
 

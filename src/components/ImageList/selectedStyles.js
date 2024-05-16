@@ -2,14 +2,17 @@ export function handleSelectedStyles(
   { prevTarget, curTarget },
   { notSelectedClass, selectedClass }
 ) {
-  console.log({ prevTarget, curTarget }, { notSelectedClass, selectedClass });
   if (prevTarget.current) {
-    prevTarget.current.parentElement.classList.add(notSelectedClass);
-    prevTarget.current.parentElement.classList.remove(selectedClass);
+    notSelectedClass &&
+      prevTarget.current.parentElement.classList.add(notSelectedClass);
+    selectedClass &&
+      prevTarget.current.parentElement.classList.remove(selectedClass);
   }
 
-  curTarget.parentElement.classList.remove(notSelectedClass);
-  curTarget.parentElement.classList.add(selectedClass);
+  notSelectedClass &&
+    curTarget.parentElement.classList.remove(notSelectedClass);
+  selectedClass && curTarget.parentElement.classList.add(selectedClass);
+
   prevTarget.current = curTarget;
 }
 

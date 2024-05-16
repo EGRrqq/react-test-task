@@ -25,9 +25,6 @@
   background-color: var(--bg-color-light);
 }
 
-.item-wrapper--not-selected {
-}
-
 .list {
   display: inherit;
   flex-direction: inherit;

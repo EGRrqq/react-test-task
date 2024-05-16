@@ -36,7 +36,6 @@ function GoodItemColors({ product, register, itemId, colorId }) {
       onImageSelect={handleColorSelect}
       selectedStyles={colorSelectedStyles}
       register={register}
-      value={colorId}
       required={true}
     />
   );

@@ -19,7 +19,6 @@ const ImageList = ({
   label,
   name,
   required,
-  value,
   selectedImage,
   selectedStyles = defaultSelectedStyles,
   onMouseOver,
@@ -57,7 +56,7 @@ const ImageList = ({
               name={name}
               required={required}
               register={register}
-              value={value || selectedImage}
+              value={image}
               onChange={
                 onImageSelect ? () => onImageSelect(image) : () => undefined
               }

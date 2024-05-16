@@ -1,3 +1,5 @@
+import styles from "./GoodItem.module.css";
+
 import GoodForm from "../../components/GoodDetailedCard/GoodForm";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -5,8 +7,14 @@ import GoodItemColors from "./GoodItemColors";
 import GoodItemSizes from "./GoodItemSizes";
 
 function GoodItemForm({ product, itemId, colorId }) {
-  const { control, register, setValue, handleSubmit } = useForm();
-
+  const {
+    control,
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(errors);
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
@@ -34,7 +42,11 @@ function GoodItemForm({ product, itemId, colorId }) {
           setValue={setValue}
         />
       }
-      action={<button type="submit">в корзину</button>}
+      action={
+        <button type="submit" className={`${styles["form__action"]}`}>
+          в корзину
+        </button>
+      }
     />
   );
 }

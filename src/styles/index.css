@@ -9,6 +9,8 @@
   --slider-padding: calc(var(--image-max-width) / 2);
 
   --bg-color-light: white;
+  --border-color-enable-light: rgb(224 224 224);
+  --border-color-disable-light: rgb(240 240 240);
 }
 
 *,

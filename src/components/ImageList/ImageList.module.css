@@ -25,12 +25,8 @@
   min-height: 1.5rem;
 }
 
-.item-wrapper__btn--selectable {
-  border: solid rgb(218 218 218);
-}
-
 .item-wrapper__btn:enabled {
-  border: solid rgb(224 224 224);
+  border: solid var(--border-color-enable-light);
 }
 .item-wrapper__btn:enabled:hover {
   border: var(--card-border) solid rgba(0, 0, 0, 0.5);
@@ -41,7 +37,7 @@
 
 .item-wrapper__btn:disabled {
   background-color: rgb(250 250 250);
-  border: solid rgb(240 240 240);
+  border: solid var(--border-color-disable-light);
 }
 
 .item-wrapper--selected {

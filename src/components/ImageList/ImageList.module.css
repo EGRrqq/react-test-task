@@ -1,22 +1,38 @@
 .item-wrapper {
+  position: relative;
   display: grid;
 }
 
-.item-wrapper__item {
+.item-wrapper--selectable {
+  cursor: pointer;
+}
+
+.item-wrapper__radio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.item-wrapper__img {
   padding: var(--card-items-padding);
   max-width: calc(var(--image-max-width) / 4);
 }
 
-.item-wrapper__item--selected {
-  border: var(--card-border) solid;
-}
-.item-wrapper__item--not-selected {
-  border: var(--card-border) solid transparent;
+.item-wrapper--selected {
+  filter: brightness(0.8);
+  background-color: var(--bg-color-light);
 }
 
-.searchable {
+.item-wrapper--not-selected {
+}
+
+.list {
   display: inherit;
   flex-direction: inherit;
   justify-content: inherit;
   align-items: inherit;
+
+  gap: 0.5rem;
 }

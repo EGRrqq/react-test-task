@@ -1,0 +1,23 @@
+.good-card {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-evenly;
+  gap: 1rem;
+
+  padding: var(--section-padding);
+  border: solid;
+  box-shadow: var(--card-shadow) black;
+}
+
+.good-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.good-form--fieldset {
+  display: flex;
+  border: solid 0.15rem;
+  padding: var(--section-padding);
+}

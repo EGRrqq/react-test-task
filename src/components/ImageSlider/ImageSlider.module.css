@@ -8,7 +8,7 @@
 
   overflow: hidden;
 
-  padding: 1rem;
+  padding: var(--section-padding);
 }
 
 .image-slider button {
@@ -62,12 +62,12 @@
   transform: translate(var(--slider-padding), 50%);
 }
 
-@media screen and (max-width: 639px) {
+@media screen and (max-width: 1024px) {
   .image-slider {
     justify-content: center;
 
     width: 100%;
-    padding: 1rem 0;
+    padding: var(--section-padding) 0;
   }
 
   .image-slider__aside {

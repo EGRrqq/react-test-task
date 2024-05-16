@@ -42,7 +42,9 @@ const ImageList = ({
         images.map((image) => (
           <label
             key={image}
-            className={`${styles["item-wrapper"]} ${wrapperSelectedStyles()}`}
+            className={`${selectedStyles.notSelectedClass} ${
+              styles["item-wrapper"]
+            } ${wrapperSelectedStyles()}`}
           >
             <input
               type="radio"
@@ -55,7 +57,7 @@ const ImageList = ({
               checked={selectedImage === image}
             />
             <img
-              className={`${selectedStyles.notSelectedClass} ${styles["item-wrapper__img"]}`}
+              className={`${styles["item-wrapper__img"]}`}
               src={image}
               alt={createImageAlt(image, name)}
               onMouseOver={onMouseOver ? () => onMouseOver(image) : undefined}

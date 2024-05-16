@@ -1,20 +1,10 @@
-import styles from "./GoodItem.module.css";
-
 import { useEffect, useState } from "react";
-import { getProduct, getSizes } from "../../services/api";
+import { getProduct } from "../../services/api";
 import { useLocation, useParams } from "wouter";
 
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
-import ImageList from "../../components/ImageList/ImageList";
-import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
-import GoodForm from "../../components/GoodDetailedCard/GoodForm";
-import { itemWithColorPath } from "../../helpers";
-
-const colorSelectedStyles = getSelectedStyles(
-  styles["color--not-selected"],
-  styles["color--selected"]
-);
+import GoodItemForm from "./GoodItemForm";
 
 function GoodItem() {
   const params = useParams();
@@ -22,21 +12,6 @@ function GoodItem() {
   const [location, setLocation] = useLocation();
 
   const [product, setProduct] = useState(undefined);
-  const [selectedImage, setSelectedImage] = useState(undefined);
-  const [sizes, setSizes] = useState([]);
-
-  function handleColorSelect(image) {
-    const colorId =
-      product && product.colors.find((c) => c.images[0] === image).id;
-
-    setLocation(itemWithColorPath(itemId, colorId));
-  }
-
-  useEffect(() => {
-    getSizes().then((data) => {
-      setSizes(data);
-    });
-  }, []);
 
   useEffect(() => {
     getProduct(itemId)
@@ -44,7 +19,6 @@ function GoodItem() {
         if (!data.colors[colorId - 1]) setLocation(`/`);
 
         setProduct(data);
-        setSelectedImage(data.colors[colorId - 1].images[0]);
       })
       .catch((e) => {
         setLocation(`/`);
@@ -62,32 +36,7 @@ function GoodItem() {
             />
           }
           form={
-            <GoodForm
-              select={
-                <ImageList
-                  name={product.name}
-                  images={product.colors.map((c) => c.images[0])}
-                  selectedImage={selectedImage}
-                  onImageSelect={handleColorSelect}
-                  selectedStyles={colorSelectedStyles}
-                />
-              }
-              sizes={sizes.map((size) => {
-                const isDisabled =
-                  product &&
-                  !product.colors[colorId - 1].sizes.includes(size.id);
-
-                return (
-                  <button
-                    key={size.id}
-                    disabled={isDisabled}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    {size.label}
-                  </button>
-                );
-              })}
-            />
+            <GoodItemForm product={product} itemId={itemId} colorId={colorId} />
           }
         />
       )}

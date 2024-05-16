@@ -8,6 +8,7 @@ import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import GoodDetailedCard from "../../components/GoodDetailedCard/GoodDetailedCard";
 import ImageList from "../../components/ImageList/ImageList";
 import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
+import GoodForm from "../../components/GoodDetailedCard/GoodForm";
 
 const colorSelectedStyles = getSelectedStyles(
   styles["color--not-selected"],
@@ -17,10 +18,11 @@ const colorSelectedStyles = getSelectedStyles(
 function GoodItem() {
   const params = useParams();
   const [itemId, colorId] = params.id.split("-");
+  const [location, setLocation] = useLocation();
 
   const [product, setProduct] = useState(undefined);
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const [location, setLocation] = useLocation();
+  const [sizes, setSizes] = useState([]);
 
   function handleColorSelect(image) {
     const selId =
@@ -28,6 +30,12 @@ function GoodItem() {
 
     setLocation(`/${itemId}-${selId}`);
   }
+
+  useEffect(() => {
+    getSizes().then((data) => {
+      setSizes(data);
+    });
+  }, []);
 
   useEffect(() => {
     getProduct(itemId)
@@ -50,13 +58,32 @@ function GoodItem() {
               name={product.name}
             />
           }
-          select={
-            <ImageList
-              name={product.name}
-              images={product.colors.map((c) => c.images[0])}
-              selectedImage={selectedImage}
-              onImageSelect={handleColorSelect}
-              selectedStyles={colorSelectedStyles}
+          form={
+            <GoodForm
+              select={
+                <ImageList
+                  name={product.name}
+                  images={product.colors.map((c) => c.images[0])}
+                  selectedImage={selectedImage}
+                  onImageSelect={handleColorSelect}
+                  selectedStyles={colorSelectedStyles}
+                />
+              }
+              sizes={sizes.map((size) => {
+                const isDisabled =
+                  product &&
+                  !product.colors[colorId - 1].sizes.includes(size.id);
+
+                return (
+                  <button
+                    key={size.id}
+                    disabled={isDisabled}
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    {size.label}
+                  </button>
+                );
+              })}
             />
           }
         />

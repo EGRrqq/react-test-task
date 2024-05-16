@@ -1,11 +1,8 @@
-function GoodDetailedCard({ slider, select, sizes }) {
+function GoodDetailedCard({ slider, form }) {
   return (
     <article>
       {slider}
-      <form style={{ display: "flex", gap: "1rem" }}>
-        {select}
-        {sizes}
-      </form>
+      {form}
     </article>
   );
 }

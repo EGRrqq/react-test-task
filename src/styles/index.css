@@ -42,5 +42,9 @@ code {
 }
 
 #root {
-  padding: 1rem;
+  padding: var(--section-padding);
+}
+
+button {
+  font-family: inherit;
 }

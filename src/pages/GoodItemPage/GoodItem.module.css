@@ -19,5 +19,5 @@
 }
 
 .form__action:hover {
-  border: solid var(--border-color-hover-dark);
+  border: solid;
 }

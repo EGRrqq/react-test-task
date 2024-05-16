@@ -5,10 +5,10 @@ import { Form } from "react-hook-form";
 function GoodForm({ action, colors, sizes, ...props }) {
   return (
     <Form className={`${styles["good-form"]}`} {...props}>
-      <fieldset className={`${styles["good-form--fieldset"]}`}>
+      <fieldset className={`${styles["good-form__fieldset"]}`}>
         {colors}
       </fieldset>
-      <fieldset className={`${styles["good-form--fieldset"]}`}>
+      <fieldset className={`${styles["good-form__fieldset"]}`}>
         {sizes}
       </fieldset>
 

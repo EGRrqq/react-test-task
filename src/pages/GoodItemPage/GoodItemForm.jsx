@@ -1,44 +1,19 @@
-import styles from "./GoodItem.module.css";
-
-import ImageList from "../../components/ImageList/ImageList";
 import GoodForm from "../../components/GoodDetailedCard/GoodForm";
 import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
-import { itemWithColorPath } from "../../helpers";
-import { getSelectedStyles } from "../../components/ImageList/selectedStyles";
 import { getSizes } from "../../services/api";
 import { useForm } from "react-hook-form";
-
-const colorSelectedStyles = getSelectedStyles(
-  styles["color--not-selected"],
-  styles["color--selected"]
-);
+import GoodItemColors from "./GoodItemColors";
 
 function GoodItemForm({ product, itemId, colorId }) {
-  const [location, setLocation] = useLocation();
-  const [selectedImage, setSelectedImage] = useState(
-    product ? product.colors[colorId - 1].images[0] : undefined
-  );
   const [sizes, setSizes] = useState([]);
   const { register, setValue, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
-  function handleColorSelect(image) {
-    const colorId =
-      product && product.colors.find((c) => c.images[0] === image).id;
-
-    setLocation(itemWithColorPath(itemId, colorId));
-  }
-
   useEffect(() => {
     setValue("item-id", itemId);
   }, [itemId, setValue]);
-
-  useEffect(() => {
-    product && setSelectedImage(product.colors[colorId - 1].images[0]);
-  }, [product, colorId]);
 
   useEffect(() => {
     getSizes().then((data) => {
@@ -49,16 +24,12 @@ function GoodItemForm({ product, itemId, colorId }) {
   return (
     <GoodForm
       onSubmit={handleSubmit(onSubmit)}
-      select={
-        <ImageList
-          name={"color-id"}
-          images={product.colors.map((c) => c.images[0])}
-          selectedImage={selectedImage}
-          onImageSelect={handleColorSelect}
-          selectedStyles={colorSelectedStyles}
+      colors={
+        <GoodItemColors
+          product={product}
           register={register}
-          value={colorId}
-          required={true}
+          colorId={colorId}
+          itemId={itemId}
         />
       }
       sizes={sizes.map((size) => {

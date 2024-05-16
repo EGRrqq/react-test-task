@@ -7,7 +7,7 @@
 }
 
 .color--not-selected:hover {
-  border: var(--card-border) solid rgba(0, 0, 0, 0.5);
+  border: var(--card-border) solid var(--border-color-hover-dark);
 }
 
 .form__action {
@@ -16,4 +16,8 @@
   min-width: 3rem;
   min-height: 2rem;
   border: solid var(--border-color-enable-light);
+}
+
+.form__action:hover {
+  border: solid var(--border-color-hover-dark);
 }

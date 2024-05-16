@@ -16,7 +16,7 @@
   border: var(--card-border) solid transparent;
 }
 .image-slider button:hover {
-  border: var(--card-border) solid;
+  border: var(--card-border) solid var(--border-color-hover-dark);
 }
 
 .image-slider__aside {

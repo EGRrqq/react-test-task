@@ -29,7 +29,7 @@
   border: solid var(--border-color-enable-light);
 }
 .item-wrapper__btn:enabled:hover {
-  border: var(--card-border) solid rgba(0, 0, 0, 0.5);
+  border: var(--card-border) solid var(--border-color-hover-dark);
 }
 .item-wrapper__radio:checked + .item-wrapper__btn:enabled {
   border: var(--card-border) solid;

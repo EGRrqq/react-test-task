@@ -28,19 +28,25 @@ function GoodItemForm({ product, itemId, colorId }) {
       onSubmit={handleSubmit(onSubmit)}
       control={control}
       colors={
-        <GoodItemColors
-          product={product}
-          colorId={colorId}
-          itemId={itemId}
-          setValue={setValue}
-        />
+        <>
+          <legend>Цвета</legend>
+          <GoodItemColors
+            product={product}
+            colorId={colorId}
+            itemId={itemId}
+            setValue={setValue}
+          />
+        </>
       }
       sizes={
-        <GoodItemSizes
-          curSizes={product.colors[colorId - 1].sizes}
-          register={register}
-          setValue={setValue}
-        />
+        <>
+          <legend>Размеры</legend>
+          <GoodItemSizes
+            curSizes={product.colors[colorId - 1].sizes}
+            register={register}
+            setValue={setValue}
+          />
+        </>
       }
       action={
         <button type="submit" className={`${styles["form__action"]}`}>

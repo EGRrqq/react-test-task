@@ -62,7 +62,7 @@
   transform: translate(var(--slider-padding), 50%);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1124px) {
   .image-slider {
     justify-content: center;
 

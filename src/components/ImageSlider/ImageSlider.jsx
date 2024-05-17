@@ -12,7 +12,7 @@ const ImageSlider = ({ images, name }) => {
     setSelectedImage(images[0]);
   }, [images]);
 
-  useHorizontalScroll(asideRef, "(max-width: 1024px)");
+  useHorizontalScroll(asideRef, "(max-width: 1124px)");
 
   function handleNextClick() {
     const index = images.indexOf(selectedImage);

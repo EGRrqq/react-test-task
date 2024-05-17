@@ -29,6 +29,17 @@ function GoodItem() {
     <>
       {product && (
         <GoodDetailedCard
+          info={
+            <header>
+              <h1>{product.name}</h1>
+              <p>{product.colors[colorId - 1].description}</p>
+            </header>
+          }
+          price={
+            <p>
+              <strong>{product.colors[colorId - 1].price}</strong>
+            </p>
+          }
           slider={
             <ImageSlider
               images={product.colors[colorId - 1].images}

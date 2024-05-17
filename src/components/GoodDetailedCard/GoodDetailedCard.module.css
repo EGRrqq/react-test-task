@@ -1,6 +1,6 @@
 .good-card {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex: 1;
   justify-content: space-evenly;
   gap: 1rem;
@@ -24,4 +24,15 @@
   display: flex;
   border: solid 0.15rem;
   padding: var(--section-padding);
+}
+
+.data-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media screen and (max-width: 1124px) {
+  .good-card {
+    flex-direction: column;
+  }
 }

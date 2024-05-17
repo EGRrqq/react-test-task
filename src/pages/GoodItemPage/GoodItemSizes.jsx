@@ -17,8 +17,13 @@ function GoodItemSizes({ curSizes, register, setValue, getError }) {
     e.preventDefault();
 
     getError && fieldset.classList.remove(`${itemStyles["fieldset--error"]}`);
-    setValue("size-id", size.id);
-    setSelectedSize(size.id);
+    setSelectedSize((prevSize) => {
+      if (prevSize !== size.id) {
+        setValue("size-id", size.id);
+        return size.id;
+      }
+      return prevSize;
+    });
   }
 
   useEffect(() => {

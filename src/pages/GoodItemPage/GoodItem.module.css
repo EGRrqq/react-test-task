@@ -1,5 +1,5 @@
 .color--selected {
-  border: var(--card-border) solid;
+  border: var(--card-border) solid var(--border-color-select);
 }
 
 .color--not-selected {
@@ -15,11 +15,14 @@
 
   min-width: 3rem;
   min-height: 2rem;
+  padding: 0.5rem;
   border: solid var(--border-color-enable-light);
+  background-color: var(--bg-color-dark);
+  color: white;
 }
 
 .form__action:hover {
-  border: solid;
+  border: solid var(--border-color-hover-dark);
 }
 
 .fieldset--error {

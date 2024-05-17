@@ -17,22 +17,25 @@
 
 .item-wrapper__img {
   padding: var(--card-items-padding);
-  max-width: calc(var(--image-max-width) / 4);
+  max-width: calc(var(--image-max-width) / 3);
 }
 
 .item-wrapper__btn {
   min-width: 3rem;
   min-height: 1.5rem;
+
+  background-color: var(--bg-color-dark);
 }
 
 .item-wrapper__btn:enabled {
+  color: white;
   border: solid var(--border-color-enable-light);
 }
 .item-wrapper__btn:enabled:hover {
-  border: var(--card-border) solid var(--border-color-hover-dark);
+  border: solid var(--border-color-hover-dark);
 }
 .item-wrapper__radio:checked + .item-wrapper__btn:enabled {
-  border: var(--card-border) solid;
+  border: solid var(--border-color-select);
 }
 
 .item-wrapper__btn:disabled {

@@ -11,14 +11,6 @@
   padding: var(--section-padding);
 }
 
-.image-slider button {
-  cursor: pointer;
-  border: var(--card-border) solid transparent;
-}
-.image-slider button:hover {
-  border: var(--card-border) solid var(--border-color-hover-dark);
-}
-
 .image-slider__aside {
   display: flex;
   flex-direction: column;
@@ -59,7 +51,21 @@
 
   z-index: 999;
 
-  transform: translate(var(--slider-padding), 50%);
+  transform: translate(50%, 35%);
+}
+.image-slider__main-btns button {
+  cursor: pointer;
+
+  padding: 0.25rem;
+  min-width: 2rem;
+  border: solid var(--border-color-enable-light);
+
+  background-color: var(--bg-color-dark);
+  color: white;
+}
+
+.image-slider__main-btns button:hover {
+  border: var(--card-border) solid var(--border-color-hover-dark);
 }
 
 @media screen and (max-width: 1124px) {

@@ -7,7 +7,7 @@ import itemStyles from "./GoodItem.module.css";
 
 function GoodItemSizes({ curSizes, register, setValue, getError }) {
   const [sizes, setSizes] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(getError);
+  const [selectedSize, setSelectedSize] = useState(null);
   const listRef = useRef();
   const fieldset = listRef.current && listRef.current.closest("fieldset");
 

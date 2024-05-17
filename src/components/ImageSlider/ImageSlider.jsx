@@ -48,8 +48,12 @@ const ImageSlider = ({ images, name }) => {
         </figure>
 
         <section className={styles["image-slider__main-btns"]}>
-          <button onClick={handlePrevClick}>Prev</button>
-          <button onClick={handleNextClick}>Next</button>
+          <button onClick={handlePrevClick} aria-label="Previous">
+            &lt;
+          </button>
+          <button onClick={handleNextClick} aria-label="Next">
+            &gt;
+          </button>
         </section>
       </div>
     </section>

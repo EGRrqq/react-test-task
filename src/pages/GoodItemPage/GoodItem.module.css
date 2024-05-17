@@ -16,13 +16,13 @@
   min-width: 3rem;
   min-height: 2rem;
   padding: 0.5rem;
-  border: solid var(--border-color-enable-light);
+  border: var(--btn-border) solid var(--border-color-enable-light);
   background-color: var(--bg-color-dark);
   color: white;
 }
 
 .form__action:hover {
-  border: solid var(--border-color-hover-dark);
+  border: var(--btn-border) solid var(--border-color-select);
 }
 
 .fieldset--error {

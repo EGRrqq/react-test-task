@@ -51,12 +51,12 @@
 
   z-index: 999;
 
-  transform: translate(50%, 35%);
+  transform: translate(75%, 35%);
 }
 .image-slider__main-btns button {
   cursor: pointer;
 
-  padding: 0.25rem;
+  padding: 0.15rem;
   min-width: 2rem;
   border: var(--btn-border) solid var(--border-color-enable-light);
 
